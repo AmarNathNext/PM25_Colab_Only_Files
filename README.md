@@ -1,33 +1,73 @@
 # PM2.5 Air Quality Analysis and Regression
 
-A Machine Learning project focused on analysing air quality data and exploring regression techniques to predict **PM2.5 concentration**.
-
 ## Project Overview
 
-PM2.5 refers to fine particulate matter with a diameter of 2.5 micrometres or smaller. It is an important indicator of air pollution and can have significant effects on human health and the environment.
+This project explores air quality data and applies machine learning regression techniques to predict PM2.5 concentrations using meteorological and atmospheric variables.
 
-This project uses Python-based data analysis and machine learning techniques to explore patterns in air quality data and develop regression models for estimating PM2.5 concentration.
+The project focuses on data preprocessing, exploratory data analysis, regression modelling, and performance comparison.
 
-## Objectives
+## Dataset
 
-- Explore and understand the air quality dataset.
-- Perform data cleaning and preprocessing.
-- Conduct Exploratory Data Analysis (EDA).
-- Identify relationships between input features and PM2.5 concentration.
-- Develop and evaluate regression models.
-- Compare model performance using appropriate regression metrics.
+The project uses an air quality dataset containing hourly observations from 2018.
 
-## Repository Contents
+- **Target variable:** PM2.5
+- **Number of observations:** 8,116
+- **Total columns:** 18
+- **Time period:** January 2018 – December 2018
 
-| File | Description |
-|---|---|
-| `PM25_Regression_Analysis.ipynb` | Jupyter Notebook containing the project analysis and implementation. |
-| `project.csv` | Dataset used for the analysis and model development. |
+### Features
+
+The dataset includes:
+
+- PM2.5 concentration
+- Temperature (T2M)
+- Dew point temperature (T2MDEW)
+- Surface pressure (PS)
+- Total column water vapour (TQV)
+- Total column cloud liquid water (TQL)
+- Atmospheric and wind-related variables
+
+The dataset contains missing values in some predictor variables, which are addressed during preprocessing.
+
+## Project Workflow
+
+1. Load the dataset and inspect its structure.
+2. Convert and process date information.
+3. Analyse missing values and data quality.
+4. Perform exploratory data analysis.
+5. Examine PM2.5 distributions and monthly patterns.
+6. Apply missing-value imputation.
+7. Prepare training and testing datasets.
+8. Train regression models.
+9. Evaluate and compare model performance.
+
+## Machine Learning Models
+
+The notebook implements and compares the following regression approaches:
+
+- Linear Regression
+- Decision Tree Regression
+- Random Forest Regression
+- Voting Regressor
+
+## Model Evaluation
+
+The models are evaluated using Root Mean Squared Error (RMSE).
+
+| Model | Training RMSE | Testing RMSE |
+|---|---:|---:|
+| Linear Regression | 25.5 | 25.9 |
+| Decision Tree | 0.0 | 28.8 |
+| Random Forest | 7.2 | 20.1 |
+| Voting Regressor | 10.5 | 21.8 |
+
+The Random Forest model achieved the lowest test RMSE among the reported models.
+
+The Decision Tree achieved zero training error but a higher test error, indicating overfitting.
 
 ## Technologies Used
 
 - Python
-- Google Colab
 - Jupyter Notebook
 - Pandas
 - NumPy
@@ -35,50 +75,40 @@ This project uses Python-based data analysis and machine learning techniques to 
 - Seaborn
 - Scikit-learn
 
-## Project Workflow
+## Repository Structure
 
-1. **Data Loading:** Import the dataset and examine its structure.
-2. **Data Preprocessing:** Inspect missing values, duplicates, data types and prepare the data for analysis.
-3. **Exploratory Data Analysis:** Study distributions, patterns and relationships between variables using statistical summaries and visualisations.
-4. **Feature Preparation:** Prepare relevant input features and the target variable for regression.
-5. **Model Development:** Build and evaluate regression models.
-6. **Model Evaluation:** Compare model performance using metrics such as:
-   - Mean Absolute Error (MAE)
-   - Mean Squared Error (MSE)
-   - Root Mean Squared Error (RMSE)
-   - R-squared (R²)
+```text
+PM25_Colab_Only_Files/
+│
+├── Air_quality.ipynb
+├── air_quality.csv
+└── README.md
+```
 
-## How to Run the Project
+## How to Run
 
-The project can be executed using Google Colab.
+1. Clone this repository.
+2. Install the required Python libraries.
+3. Open `Air_quality.ipynb` using Jupyter Notebook or VS Code.
+4. Ensure `air_quality.csv` is in the same directory.
+5. Run the notebook cells sequentially.
 
-1. Open the notebook: `PM25_Regression_Analysis.ipynb`.
-2. Upload or open the notebook in [Google Colab](https://colab.research.google.com/).
-3. Upload `project.csv` when required by the notebook.
-4. Execute the notebook cells in sequence.
-5. Review the visualisations, analysis and model evaluation results.
+Install the main dependencies:
 
-## Dataset
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+```
 
-The project uses the CSV file `project.csv`.
+## Limitations and Future Improvements
 
-**Dataset source and original attribution:** To be added after confirming the original dataset publication and licensing information.
+- Evaluate the models using chronological train-test splitting to better reflect time-series prediction.
+- Perform additional hyperparameter optimisation.
+- Investigate feature importance and model interpretability.
+- Evaluate additional metrics such as MAE and R².
+- Document the original dataset source and variable units.
 
-## Learning Outcomes
+## Project Note
 
-This project provides practical experience in:
+This project is an academic machine learning study focused on understanding the relationship between atmospheric variables and PM2.5 concentrations.
 
-- Data analysis using Python.
-- Data preprocessing and visualisation.
-- Exploratory and statistical analysis.
-- Regression model development.
-- Machine learning model evaluation.
-- Working with Google Colab and GitHub.
-
-## Academic Context
-
-Developed as part of the **CSE570 – Machine Learning with Python** skill-based assignment.
-
----
-
-**Note:** Model performance and conclusions should be interpreted based on the actual results generated by executing the notebook.
+Dataset provenance and variable units should be verified against the original data source before publication or formal submission.
